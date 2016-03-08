@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分词结果|自动推荐分类</title>
+    <link rel="stylesheet" href="/css/common.css"/>
+</head>
+<style>
+    .main {
+        width: 700px;
+        margin: 35px auto;
+    }
+    .normal{color: #444444}
+    .blue{color: royalblue}
+</style>
+<body>
+<div class="main">
+    <form name="form" action="http://localhost:3000/chinese" method="post" >
+        <p>中文分词结果</p>
+        <p>亲爱的用户！：</p>
+        <p>您输入的词句：<span class="normal"><%=word%></span></p>
+        <p>分词结果为：
+        <% rs.forEach(function(obj){%>
+            <span class="blue"><%=obj.w%></span>&nbsp;
+        <%}) %>
+        </p>
+        <p>自动推荐分类：
+            <% res.forEach(function(item){%>
+           <b><span class="blue"><%=item%></span></b>&nbsp;
+            <%}) %>
+        </p>
+    </form>
+</div>
+</body>
+</html>

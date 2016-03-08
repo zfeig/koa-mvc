@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>mysql demo</title>
+	<link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+<body>
+	<div class="main">
+	<p>mysql实例</p>
+	<% data['data'].forEach(function (item) {%>
+    	<p><a href="/a/detail/<%=item.uid%>"><%= item.uid%>  <%= item.nickname%>  <%=item.rtime%></a></p>
+  	<% })%>
+
+  	<p><a href="/a/list/1">首页</a>
+		<% if(data.page>1) {%>
+			&nbsp;<a href="/a/list/<%=data.page-1%>">上一页</a>&nbsp;
+		<%}%>
+		<% if(data.page<data.totalPage) {%>
+			<a href="/a/list/<%=data.page+1%>">下一页</a>&nbsp;
+		<%}%>
+  	   <a href="/a/list/<%=data.totalPage%>">尾页</a>
+  	   &nbsp;<%=data.page%>/<%=data.totalPage%>
+  	</p>
+
+	</div>
+
+</body>
+</html>

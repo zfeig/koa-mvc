@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css"/>
+</head>
+<style>
+    .main {
+        width: 700px;
+        margin: 35px auto;
+    }
+</style>
+<body>
+<div class="main">
+    <form name="form" action="http://<%=ip%>:3000/chinese" method="post" >
+        <p>node.js中文分词系统实现中文分词与自动推荐分类</p>
+        <p><input type="text" name="word" placeholder="请输入中文词汇"/><input type="submit" name="btn" value="提交"/></p>
+    </form>
+</div>
+</body>
+</html>

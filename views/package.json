@@ -1,0 +1,35 @@
+{
+  "name": "koa-mvc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "co": "^4.6.0",
+    "ejs": "^2.3.3",
+    "co-mysql": "^1.0.0",
+    "co-body": "^4.0.0",
+    "co-views": "^2.1.0",
+    "koa": "^1.0.0",
+    "koa-better-body": "^1.0.17",
+    "koa-flash": "^1.0.0",
+    "koa-redis": "^1.0.1",
+    "koa-generic-session": "^1.9.2",
+    "koa-router": "^5.1.2",
+    "koa-static": "^1.4.9",
+    "mongoose": "^4.1.2",
+    "mysql": "^2.9.0",
+    "segment": "^0.0.6",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.2.2",
+    "validator": "^4.0.5",
+    "koa-request": "^1.0.0",
+    "thunkify": "^2.1.2",
+    "redis": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

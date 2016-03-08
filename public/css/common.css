@@ -1,0 +1,6 @@
+body{padding: 0;margin: 0}
+ul,li{margin: 0;padding: 0;list-style-type:none;}
+.main{width: 760px;height: auto;padding: 50px;margin: 25px auto}
+p{color: red;font-size: 15px;line-height: 30px;}
+a{text-decoration: none;}
+a:hover{text-decoration: underline;color: red};

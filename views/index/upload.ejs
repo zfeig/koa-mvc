@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/common.css"/>
+</head>
+<style>
+    .main {
+        width: 700px;
+        margin: 35px auto;
+    }
+</style>
+<body>
+<div class="main">
+    <form name="form" action="http://<%=ip%>:3000/upload" method="post" enctype="multipart/form-data">
+        <p>请认真填写以下表单数据，谢谢合作！</p>
+
+        <p><span class="title">账号：</span><input type="text" name="user"/></p>
+
+        <p><span class="title">密码：</span><input type="password" name="pwd"/></p>
+
+        <p><span class="title">性别：</span><input type="radio" name="sex" value="男"/>男 &nbsp;<input type="radio" name="sex" value="女"/>女</p>
+
+        <p><span class="title">籍贯：</span>
+            <select name="from" id="from" name="from">
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="广州">广州</option>
+                <option value="深圳">深圳</option>
+                <option value="武汉">武汉</option>
+            </select>
+        </p>
+        <p>
+            <span class="title">爱好：</span>
+            <input type="checkbox" name="hobby" value="游泳"/>游泳 &nbsp;
+            <input type="checkbox" name="hobby" value="篮球"/>篮球 &nbsp;
+            <input type="checkbox" name="hobby" value="跑步"/>跑步 &nbsp;
+        </p>
+        <p><input type="file" name="upfile" multiple /></p>
+        </p>
+        <p><input type="submit" name="btn" value="提交"/></p>
+    </form>
+</div>
+</body>
+</html>

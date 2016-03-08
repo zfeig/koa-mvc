@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>index</title>
+	<link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+<body>
+	<div class="main">
+		<p>项目功能列表</p>
+		<!--测试session使用-->
+		<% if(self.session.tip){%>
+		<p><%=self.session.tip%></p>
+		<%}%>
+		<!--cookies使用-->
+		<% if(self.cookies.get('tip')){%>
+		<p><%=unescape(self.cookies.get('tip'))%></p>
+		<%}%>
+
+		<p><a href="/a/list">mysql实例</a></p>
+		<p><a href="/a/cate/list">mongodb实例</a></p>
+		<p><a href="/form">表单解析</a></p>
+		<p><a href="/upload">文件上传</a></p>
+		<p><a href="/files">文件管理</a></p>
+		<p><a href="/chinese">中文分词与自动分类</a></p>
+		<br><small>第<%=views%>次访问</small>
+	</div>
+
+</body>
+</html>

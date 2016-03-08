@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>file list</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+</head>
+<body>
+<div class="main">
+    <p>上传文件列表</p>
+    <% data.forEach(function (item) {%>
+    <p>
+       <% if(item.size){%>
+        <a href="javascript:void(0)"><%= item.name%></a>&nbsp;&nbsp;<%=item.size%> &nbsp; <a href="/download?p=<%=item.encodeurl%>">点击下载</a>
+       <%}else{%>
+        <a href="<%=item.pt%>"><%=item.name%></a>
+       <%}%>
+    </p>
+    <% })%>
+
+</div>
+
+</body>
+</html>

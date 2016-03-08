@@ -1,0 +1,289 @@
+2015-06-01至今用户发帖时间分布统计
+
+1、实现所有的无效发帖，评论统计【过滤有效的，指马甲用户发布或普通用户发布的失效的帖子数】
+
+a、创建视图f1,筛选出所有的指定日期发帖纪录【日期符合，发帖记录】
+
+CREATE VIEW f1 AS
+SELECT
+	`mh_post`.`timeline` AS `timeline`,
+	`mh_post`.`pid` AS `pid`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d'
+	) AS `date`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d-%H'
+	) AS `date_hour`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%w'
+	) AS `week`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%H'
+	) AS `hour`,
+	`mh_post`.`status` AS `status`,
+	`mh_post`.`first` AS `first`,
+	`mh_post`.`vest` AS `vest`
+FROM
+	`mh_post`
+WHERE
+	(
+		(`mh_post`.`first` = 1)
+		AND (
+			`mh_post`.`timeline` >= unix_timestamp('2015-6-1 00:00:00')
+		)
+	)
+ORDER BY
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d-%H'
+	)
+
+
+
+
+
+b、创建视图f2,筛选出所有的指定日期评论纪录【日期符合，评论纪录】
+
+
+CREATE VIEW f2 AS
+SELECT
+	`mh_post`.`timeline` AS `timeline`,
+	`mh_post`.`pid` AS `pid`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d'
+	) AS `date`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d-%H'
+	) AS `date_hour`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%w'
+	) AS `week`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%H'
+	) AS `hour`,
+	`mh_post`.`status` AS `status`,
+	`mh_post`.`first` AS `first`,
+	`mh_post`.`vest` AS `vest`
+FROM
+	`mh_post`
+WHERE
+	(
+		(`mh_post`.`first` = 0)
+		AND (
+			`mh_post`.`timeline` >= unix_timestamp('2015-6-1 00:00:00')
+		)
+	)
+ORDER BY
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d-%H'
+	)
+
+
+
+c、读取纪录【分别在发帖纪录和评论纪录中筛选无效的并统计，最后union生成结果】
+/** 读取2015.6.1至今所有无效发帖数和评论数，分时统计【包括马甲用户帖和普通用户失效帖】**/
+SELECT
+	x.date AS '日期',
+	x.`week` AS '周几',
+	x.`hour` AS '小时',
+	sum(x.thread_num) AS '发帖数量',
+	sum(x.post_num) AS '评论数量'
+FROM
+	(
+		SELECT
+			thread_num,
+			0 AS post_num,
+			date_hour,
+			date,
+			WEEK,
+			HOUR
+		FROM
+			(
+                               //在发帖记录中筛选无效的发帖纪录并统计
+				SELECT
+					count(pid) AS thread_num,
+					date,
+					date_hour,
+					`week`,
+					`hour`
+				FROM
+					f1
+				WHERE
+					vest = 1
+				OR STATUS = 0
+				GROUP BY
+					date_hour
+				ORDER BY
+					date_hour
+			) AS a
+		UNION ALL
+			SELECT
+				0 AS thread_num,
+				post_num,
+				date_hour,
+				date,
+				WEEK,
+				HOUR
+			FROM
+				(
+				
+                                 //在回帖记录中筛选无效的回帖纪录并统计
+					SELECT
+						count(pid) AS post_num,
+						date,
+						date_hour,
+						`week`,
+						`hour`
+					FROM
+						f2
+					WHERE
+						vest = 1
+					OR STATUS = 0
+					GROUP BY
+						date_hour
+					ORDER BY
+						date_hour
+				) AS b
+			ORDER BY
+				date_hour
+	) AS x
+GROUP BY
+	x.date_hour
+ORDER BY
+	x.date_hour;
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+2、实现所有的有效发帖与评论并统计【过滤无效的，普通用户发布状态正常的帖子数】
+
+a、创建试图thread_hour_num,筛选出所有的有效发帖纪录并统计【日期符合，非马甲用户，帖子状态有效，发帖纪录】
+
+SELECT
+	count(`mh_post`.`pid`) AS `thread_num`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d-%H'
+	) AS `date_hour`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d'
+	) AS `date`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%w'
+	) AS `WEEK`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%H'
+	) AS `HOUR`
+FROM
+	`mh_post`
+WHERE
+	(
+		(`mh_post`.`status` = 1)
+		AND (`mh_post`.`vest` = 0)
+		AND (`mh_post`.`first` = 1)
+		AND (
+			`mh_post`.`timeline` >= unix_timestamp('2015-6-1 00:00:00')
+		)
+	)
+GROUP BY
+	`date_hour`
+ORDER BY
+	`date_hour`
+
+
+b、创建试图post_hour_num,筛选出所有的有效评论纪录并统计【日期符合，非马甲用户，帖子状态有效，评论纪录】
+
+
+SELECT
+	count(`mh_post`.`pid`) AS `post_num`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d-%H'
+	) AS `date_hour`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%Y-%m-%d'
+	) AS `date`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%w'
+	) AS `WEEK`,
+	date_format(
+		from_unixtime(`mh_post`.`timeline`),
+		'%H'
+	) AS `HOUR`
+FROM
+	`mh_post`
+WHERE
+	(
+		(`mh_post`.`status` = 1)
+		AND (`mh_post`.`vest` = 0)
+		AND (`mh_post`.`first` = 0)
+		AND (
+			`mh_post`.`timeline` >= unix_timestamp('2015-6-1 00:00:00')
+		)
+	)
+GROUP BY
+	`date_hour`
+ORDER BY
+	`date_hour`
+
+
+c、合并结果【求并集】，并输出统计
+
+
+	SELECT
+	r.date AS '日期',
+	r.`WEEK` AS '周几',
+	r.`HOUR` AS '小时',
+	sum(r.thread_num) AS '发贴数量',
+	sum(r.post_num) AS '评论数量'
+FROM
+	(
+		SELECT
+			thread_num,
+			0 AS post_num,
+			date_hour,
+			date,
+			WEEK,
+			HOUR
+		FROM
+			thread_hour_num
+		UNION
+			SELECT
+				0 AS thread_num,
+				post_num,
+				date_hour,
+				date,
+				WEEK,
+				HOUR
+			FROM
+				post_hour_num
+			ORDER BY
+				date_hour
+	) AS r
+GROUP BY
+	r.date_hour;
+
+;
+
+
+
+
+
+

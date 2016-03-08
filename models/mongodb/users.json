@@ -1,0 +1,158 @@
+﻿{ 
+    "_id" : ObjectId("55c1614d59ac326dbf1b98c6"), 
+    "name" : "zfeig", 
+    "age" : 25.0, 
+    "sex" : "female", 
+    "salary" : NumberInt(5800)
+}
+{ 
+    "_id" : ObjectId("55c2bd0e056bac6ec26ff18e"), 
+    "name" : "lisi", 
+    "age" : 26.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(8900)
+}
+{ 
+    "_id" : ObjectId("55c2bd3c056bac6ec26ff18f"), 
+    "name" : "lisi", 
+    "age" : 28.0, 
+    "sex" : "female", 
+    "salary" : NumberInt(3690)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff190"), 
+    "name" : "name0", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(7580)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff191"), 
+    "name" : "name1", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(6920)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff192"), 
+    "name" : "name2", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(6980)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff193"), 
+    "name" : "name3", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(6900)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff194"), 
+    "name" : "name4", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(4890)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff195"), 
+    "name" : "name5", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(3589)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff196"), 
+    "name" : "name6", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(6900)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff197"), 
+    "name" : "name7", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(3600)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff198"), 
+    "name" : "name8", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(3985)
+}
+{ 
+    "_id" : ObjectId("55c2be70056bac6ec26ff199"), 
+    "name" : "name9", 
+    "age" : 25.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(9000)
+}
+{ 
+    "_id" : ObjectId("55c2c7b3056bac6ec26ff19a"), 
+    "name" : "lisi", 
+    "age" : 20.0, 
+    "sex" : "male", 
+    "salary" : NumberInt(7500)
+}
+{ 
+    "_id" : ObjectId("55c2ca15056bac6ec26ff19b"), 
+    "name" : "lisi", 
+    "age" : 29.0, 
+    "sex" : "male", 
+    "salary" : 4000.0
+}
+{ 
+    "_id" : ObjectId("55c2ca23056bac6ec26ff19c"), 
+    "name" : "lisi", 
+    "age" : 26.0, 
+    "sex" : "male", 
+    "salary" : 7000.0
+}
+{ 
+    "_id" : ObjectId("55c2ca2b056bac6ec26ff19d"), 
+    "name" : "lisi", 
+    "age" : 26.0, 
+    "sex" : "female", 
+    "salary" : 8000.0
+}
+{ 
+    "_id" : ObjectId("55c2ca3a056bac6ec26ff19e"), 
+    "name" : "lisi", 
+    "age" : 29.0, 
+    "sex" : "female", 
+    "salary" : 9000.0
+}
+{ 
+    "_id" : ObjectId("55cada40bd003df01b3cfe4d"), 
+    "name" : "yueni001", 
+    "age" : NumberInt(29), 
+    "sex" : "male", 
+    "salary" : NumberInt(8000), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("55cadaa56d1b4b400e2c62d0"), 
+    "name" : "yueni002", 
+    "age" : NumberInt(29), 
+    "sex" : "male", 
+    "salary" : NumberInt(8000), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("55cadbb33172f8540de21945"), 
+    "name" : "yueni003", 
+    "age" : NumberInt(29), 
+    "sex" : "male", 
+    "salary" : NumberInt(8000), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("55caf83d5010d54d764dab78"), 
+    "name" : "yueni", 
+    "age" : 26.0, 
+    "sex" : "female", 
+    "birth" : ISODate("2015-08-12T07:39:41.221+0000"), 
+    "salary" : 5000.0
+}
